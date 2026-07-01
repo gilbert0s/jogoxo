@@ -1,0 +1,149 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d0e15; /* Fundo ultra escuro */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+    /* Efeito Neon Gelo no Título */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00f3ff, 0 0 30px #00f3ff;
+}
+
+.status {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+/* Cores dinâmicas para o texto de status */
+.status.player-turn {
+    color: #00f3ff;
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.6);
+}
+
+.status.ia-turn {
+    color: #ff007f;
+    text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+}
+
+/* Painel do Tabuleiro */
+.board {
+    display: grid;
+    grid-template-columns: repeat(6, 65px);
+    grid-template-rows: repeat(6, 65px);
+    gap: 12px;
+    padding: 15px;
+    background: rgba(20, 21, 33, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Células */
+.cell {
+    background-color: #161722;
+    border: 1px solid #2d3047;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+.cell:hover:not(:empty) {
+    cursor: not-allowed;
+}
+
+/* Efeito Hover nas células vazias */
+.cell:empty:hover {
+    background-color: #1f2133;
+    border-color: #00adb5;
+    box-shadow: 0 0 10px rgba(0, 173, 181, 0.4);
+}
+
+/* Animação Pop de entrada dos símbolos */
+@keyframes popIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Neon para o X */
+.cell .x-symbol {
+    color: #00f3ff;
+    text-shadow: 0 0 8px #00f3ff, 0 0 20px rgba(0, 243, 255, 0.6);
+    animation: popIn 0.25s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Neon para o O */
+.cell .o-symbol {
+    color: #ff007f;
+    text-shadow: 0 0 8px #ff007f, 0 0 20px rgba(255, 0, 127, 0.6);
+    animation: popIn 0.25s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Botão Restart */
+#restart {
+    margin-top: 30px;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: transparent;
+    color: #00f3ff;
+    border: 2px solid #00f3ff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+#restart:hover {
+    background-color: #00f3ff;
+    color: #0d0e15;
+    box-shadow: 0 0 20px #00f3ff;
+}
+
+/* Destaques de Vitória */
+@keyframes winnerPulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+}
+
+.cell.win-player {
+    background-color: rgba(0, 200, 83, 0.2) !important;
+    border-color: #00c853 !important;
+    box-shadow: 0 0 20px #00c853, inset 0 0 10px #00c853 !important;
+    animation: winnerPulse 0.6s infinite ease-in-out;
+    z-index: 5;
+}
+
+.cell.win-ia {
+    background-color: rgba(213, 0, 0, 0.2) !important;
+    border-color: #ff1744 !important;
+    box-shadow: 0 0 20px #ff1744, inset 0 0 10px #ff1744 !important;
+    animation: winnerPulse 0.6s infinite ease-in-out;
+    z-index: 5;
+}

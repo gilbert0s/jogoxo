@@ -1,0 +1,17 @@
+{
+  "name": "Jogo da Velha Neon 6x6",
+  "short_name": "Velha Neon",
+  "description": "Jogo da velha futurista com IA avançada.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d0e15",
+  "theme_color": "#0d0e15",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2076/2076218.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
