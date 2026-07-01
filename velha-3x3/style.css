@@ -1,0 +1,42 @@
+body {
+    background-color: #06070d;
+    color: #ffffff;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+/* O Tabuleiro que organiza as 9 células */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px; /* Espaço entre os quadradinhos */
+}
+
+/* Estilo de cada quadradinho individual */
+.cell {
+    background-color: #121520;
+    border: 2px solid #00f3ff; /* Borda neon ciano inicial */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cell:hover {
+    background-color: #1b2030;
+}
