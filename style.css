@@ -1,0 +1,186 @@
+/* Configuração Geral e Fundo Espacial */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #05060b;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 30px 30px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- CABEÇALHO COM LETRAS VAZADA --- */
+.main-header {
+    margin-top: 50px;
+    margin-bottom: 60px;
+    user-select: none;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* --- LOGO EM FORMATO DE CRUZ XOXO--- */
+.logo-matrix-cruz {
+    display: grid;
+    grid-template-columns: repeat(2, 50px); /* Tamanho fixo para os quadrantes */
+    grid-template-rows: repeat(2, 50px);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    line-height: 50px; /* Alinha as letras verticalmente no centro do quadrante */
+    user-select: none;
+}
+
+/* Criando as linhas da cruz com as bordas */
+.border-right {
+    border-right: 3px solid #ffffff;
+}
+
+.border-bottom {
+    border-bottom: 3px solid #ffffff;
+}
+
+/* Aplica o efeito de luz neon branca/azulada na própria cruz de linhas */
+.logo-matrix-cruz span {
+    box-sizing: border-box;
+/*AQUI CONTROLA O BRILHO DA CRUZ*/
+    filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 12px rgba(255, 255, 255, 0.664));
+}
+
+/* Efeito Texto Vazado com Borda Neon */
+.logo-text-vazado {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin: 0;
+    color: transparent; /* Torna o interior da letra preto/invisível */
+    -webkit-text-stroke: 2px #ffffff; /* Cria a linha do contorno */
+    filter: drop-shadow(0 0 12px #00f3ff); /* Espalha o brilho azul nas bordas */
+}
+
+.neon-cyan {
+    color: #00f3ff;
+    text-shadow: 0 0 05px #00f3ff, 0 0 10px rgba(0, 242, 255, 0.404);
+}
+
+.neon-pink {
+    color: #ff007f;
+    text-shadow: 0 0 10px #ff007f, 0 0 10px rgba(255, 0, 128, 0.342);
+}
+
+/* --- GRADE DE JOGOS --- */
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    width: 90%;
+    max-width: 950px;
+    justify-items: center;
+    padding-bottom: 60px;
+}
+
+/* --- CARDS ESTILO BROCHE/PATCH INDUSTRIAL --- */
+.game-square {
+    width: 240px;
+    height: 240px;
+    border-radius: 46px; /* Borda bem grossa e arredondada */
+    background: linear-gradient(135deg, #161824 0%, #090a0f 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    text-decoration: none;
+    box-sizing: border-box;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- DESIGN INTERNO DO CARD ATIVO (THUMBNAIL DA VELHA) --- */
+.game-thumbnail {
+    width: 100%;
+    height: 70%;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.03);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+/* Simulando o desenho do tabuleiro dentro do card */
+.thumb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 30px);
+    grid-template-rows: repeat(3, 30px);
+    gap: 5px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.2rem;
+    line-height: 30px;
+}
+.thumb-grid span {
+    border: 1px solid rgba(0, 243, 255, 0.15);
+}
+.thumb-grid span:nth-child(odd) { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
+.thumb-grid span:nth-child(even) { color: #ff007f; text-shadow: 0 0 5px #ff007f; }
+
+.card-footer h3 {
+    margin: 5px 0 0 0;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+/* --- ENGENHARIA DO NEON DO TUBO (MOLDURA GROSSA) --- */
+.neon-border-cyan {
+    border: 8px solid #00f3ff;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 243, 255, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+.neon-border-cyan h3 {
+    color: #ffffff;
+    text-shadow: 0 0 8px #00f3ff;
+}
+
+/* Hover Interativo: O Tubo brilha mais e o botão pressiona */
+.neon-border-cyan:hover:not(.coming-soon) {
+    transform: translateY(4px);
+    border-color: #5cf7ff;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.8),
+        0 0 40px #00f3ff,
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* --- ESTILO DOS CARDS APAGADOS (EM BREVE) --- */
+.coming-soon {
+    border: 8px solid #1e121a; /* Borda grossa apagada */
+    background: #08090f;
+    justify-content: center;
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.coming-soon .game-preview {
+    font-size: 3.5rem;
+    color: #3b2333;
+    font-weight: 900;
+}
+.coming-soon h3 {
+    color: #3b2333;
+    margin-top: 15px;
+}
