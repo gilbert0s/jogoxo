@@ -144,21 +144,21 @@ body {
     font-weight: 800;
 }
 
-/* --- ENGENHARIA DO NEON DO TUBO (MOLDURA GROSSA) --- */
-.neon-border-cyan {
+/* --- AUTOMAÇÃO DOS NEONS IMPARES (1º, 3º, 5º... Sempre serão Ciano) --- */
+.portal-grid .game-square:nth-child(odd) {
     border: 8px solid #00f3ff;
     box-shadow: 
         0 15px 35px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(0, 243, 255, 0.4),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
-.neon-border-cyan h3 {
+
+.portal-grid .game-square:nth-child(odd) h3 {
     color: #ffffff;
     text-shadow: 0 0 8px #00f3ff;
 }
 
-/* Hover Interativo: O Tubo brilha mais e o botão pressiona */
-.neon-border-cyan:hover:not(.coming-soon) {
+.portal-grid .game-square:nth-child(odd):hover:not(.coming-soon) {
     transform: translateY(4px);
     border-color: #5cf7ff;
     box-shadow: 
@@ -167,20 +167,67 @@ body {
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
+/* --- AUTOMAÇÃO DOS NEONS PARES (2º, 4º, 6º... Sempre serão Rosa) --- */
+.portal-grid .game-square:nth-child(even) {
+    border: 8px solid #ff007f;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 0, 128, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.portal-grid .game-square:nth-child(even) h3 {
+    color: #ffffff;
+    text-shadow: 0 0 8px #ff007f;
+}
+
+.portal-grid .game-square:nth-child(even):hover:not(.coming-soon) {
+    transform: translateY(4px);
+    border-color: #ff5ca8;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.8),
+        0 0 40px #ff007f,
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
 /* --- ESTILO DOS CARDS APAGADOS (EM BREVE) --- */
-.coming-soon {
-    border: 8px solid #1e121a; /* Borda grossa apagada */
+
+/* Remove o efeito de brilho e movimento dos cards bloqueados */
+.portal-grid .game-square.em-breve {
     background: #08090f;
     justify-content: center;
-    opacity: 0.3;
+    opacity: 1; /* alterar opacidade do card*/
     cursor: not-allowed;
+    transform: none !important;
 }
-.coming-soon .game-preview {
-    font-size: 3.5rem;
-    color: #3b2333;
-    font-weight: 900;
+
+/* Deixa os textos internos escuros para parecer desligado */
+.portal-grid .game-square.em-breve .game-preview,
+.portal-grid .game-square.em-breve h3 {
+    color: #3b2333 !important;
+    text-shadow: none !important;
 }
-.coming-soon h3 {
-    color: #3b2333;
-    margin-top: 15px;
+
+/* Aplica as bordas escuras seguindo a nossa regra inteligente (Pares e Ímpares) */
+.portal-grid .game-square.em-breve:nth-child(odd) {
+    border: 8px solid #00373a !important; 
+    box-shadow: none !important;
+}
+
+.portal-grid .game-square.em-breve:nth-child(even) {
+    border: 8px solid #3b1225 !important; 
+    box-shadow: none !important;
+}
+/* --- ESTILIZAÇÃO DO PONTO DE INTERROGAÇÃO "BONITÃO" --- */
+.portal-grid .game-square.em-breve .game-preview {
+    font-size: 4.5rem;          /* Aumenta o tamanho para ficar imponente */
+    font-weight: 900;           /* Deixa o traço bem grosso e moderno */
+    color: #ffffff50 !important;  /* Um tom de roxo/vinho base */
+    
+    /* Um efeito de contorno e text-shadow bem sutil para parecer um neon apagado ou carregando */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.219), 0 0 20px rgba(0, 243, 255, 0.05) !important;
+    
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Usa uma fonte mais encorpada e estilosa */
+    user-select: none;          /* Impede o usuário de selecionar o texto sem querer */
+    transition: color 0.3s ease;
 }
