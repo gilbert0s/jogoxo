@@ -1,167 +1,184 @@
 /* Configuração Geral e Fundo Espacial */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #05060b;
+    margin: 0;                                                         /* REMOVE O ESPAÇO EM BRANCO PADRÃO QUE O NAVEGADOR CRIA NAS BORDAS DA TELA */
+    padding: 0;                                                        /* REMOVE O PREENCHIMENTO INTERNO PADRÃO DO CORPO DA PÁGINA */
+    background-color: #05060b;                                         /* DEFINE A COR DE FUNDO DO SITE PARA UM AZUL QUASE PRETO (SUPER ESCURO) */
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-    background-size: 30px 30px;
-    color: #ffffff;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),  /* CRIA AS LINHAS DA GRADE HORIZONTAIS QUASE INVISÍVEIS (1% DE OPACIDADE) */
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); /* CRIA AS LINHAS DA GRADE VERTICAIS GIRADAS EM 90 GRAUS */
+    background-size: 30px 30px;                                        /* DEFINE QUE CADA QUADRADINHO DA GRADE ESPACIAL TERÁ 30X30 PIXELS DE TAMANHO */
+    color: #ffffff;                                                    /* DEFINE A COR PADRÃO DE TODOS OS TEXTOS DO SITE COMO BRANCO */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;     /* DEFINE A LISTA DE FONTES DO SITE DO SISTEMA DO USUÁRIO */
+    display: flex;                                                     /* ATIVA O MODO FLEXBOX NO CORPO PARA CONTROLAR O ALINHAMENTO GERAL */
+    flex-direction: column;                                            /* ORGANIZA OS ELEMENTOS FILHOS EM COLUNA (UM ABAIXO DO OUTRO) */
+    align-items: center;                                               /* ALINHA TODOS OS BLOCOS FILHOS NO CENTRO HORIZONTAL DA TELA */
     min-height: 100vh;
+    position: relative;                                                /* ABRE REFERÊNCIA DE POSIÇÃO PARA A CAMADA DA GRADE */                                                 /* GARANTE QUE O FUNDO OCUPA NO MÍNIMO 100% DA ALTURA DA TELA DO USUÁRIO */
+}
+
+/* NOVA CAMADA EXCLUSIVA PARA A GRADE FICAR NO FUNDO */
+.espaco-grade {
+    position: fixed;                                                   /* TRAVA A GRADE NA TELA PARA ELA NÃO SAIR DO LUGAR SE TIVER SCROLL */
+    top: 0;                                                            /* COLA A GRADE NO TOPO DA TELA */
+    left: 0;                                                           /* COLA A GRADE NO LADO ESQUERDO DA TELA */
+    width: 100%;                                                       /* ABRE A GRADE EM 100% DA LARGURA DA TELA */
+    height: 100%;                                                      /* ABRE A GRADE EM 100% DA ALTURA DA TELA */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),  /* CRIA AS LINHAS DA GRADE HORIZONTAIS QUASE INVISÍVEIS */
+        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px); /* CRIA AS LINHAS DA GRADE VERTICAIS */
+    background-size: 30px 30px;                                        /* TAMANHO DOS QUADRADINHOS EM 30X30 PIXELS */
+    z-index: -1;                                                       /* O SEGREDO: JOGA ESTA CAMADA TOTALMENTE PARA TRÁS DE TODOS OS TEXTOS E CARDS */
+    pointer-events: none;                                              /* FAZ O MOUSE IGNORAR A GRADE PARA VOCÊ CONSEGUIR CLICAR NOS CARDS NORMALMENTE */
 }
 
 /* --- CABEÇALHO COM LETRAS VAZADA --- */
 .main-header {
-    margin-top: 50px;
-    margin-bottom: 60px;
-    user-select: none;
+    margin-top: 50px;                                                  /* EMPURRA O CABEÇALHO 50 PIXELS PARA BAIXO DO TOPO DA TELA */
+    margin-bottom: 60px;                                               /* CRIA UM ESPAÇO DE 60 PIXELS ABAIXO DO LOGO ANTES DA GRADE */
+    user-select: none;                                                 /* IMPEDE QUE O USUÁRIO CONSIGA SELECIONAR O TEXTO DO TÍTULO COM O MOUSE */
 }
 
 .logo-box {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+    display: flex;                                                     /* ATIVA O FLEXBOX PARA ALINHAR A CRUZ E O TEXTO LADO A LADO */
+    align-items: center;                                               /* ALINHA O CENTRO VERTICAL DA CRUZ COM O CENTRO DO TEXTO "JOGOS" */
+    gap: 25px;                                                         /* CRIA UM DISTANCIAMENTO FIXO DE 25 PIXELS ENTRE A CRUZ E O TEXTO */
 }
 
 /* --- LOGO EM FORMATO DE CRUZ XOXO--- */
 .logo-matrix-cruz {
-    display: grid;
-    grid-template-columns: repeat(2, 50px); /* Tamanho fixo para os quadrantes */
-    grid-template-rows: repeat(2, 50px);
-    font-size: 2.5rem;
-    font-weight: 900;
-    text-align: center;
-    line-height: 50px; /* Alinha as letras verticalmente no centro do quadrante */
-    user-select: none;
+    display: grid;                                                     /* ATIVA O MODO GRID PARA CRIAR UMA TABELA DE QUADRANTES */
+    grid-template-columns: repeat(2, 50px);                            /* CONFIGURA EXATAMENTE 2 COLUNAS DE 50 PIXELS DE LARGURA */
+    grid-template-rows: repeat(2, 50px);                               /* CONFIGURA EXATAMENTE 2 LINHAS DE 50 PIXELS DE ALTURA */
+    font-size: 2.5rem;                                                 /* DEFINE O TAMANHO DAS LETRAS X E O INTERNAS DA LOGO */
+    font-weight: 900;                                                  /* DEIXA OS TRAÇOS DAS LETRAS NA ESPESSURA MÁXIMA (SUPER NEGRITO) */
+    text-align: center;                                                /* ALINHA AS LETRAS NO CENTRO HORIZONTAL DE CADA QUADRANTE */
+    line-height: 50px;                                                 /* ALINHA AS LETRAS NO CENTRO VERTICAL IGUALANDO À ALTURA DO QUADRANTE */
+    user-select: none;                                                 /* BLOQUEIA A SELEÇÃO DAS LETRAS DA LOGO PELO USUÁRIO */
 }
 
 /* Criando as linhas da cruz com as bordas */
 .border-right {
-    border-right: 3px solid #ffffff;
+    border-right: 3px solid #ffffff;                                   /* CRIA A LINHA VERTICAL BRANCA NO LADO DIREITO DO QUADRANTE */
 }
 
 .border-bottom {
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;                                  /* CRIA A LINHA HORIZONTAL BRANCA NA PARTE DE BAIXO DO QUADRANTE */
 }
 
 /* Aplica o efeito de luz neon branca/azulada na própria cruz de linhas */
 .logo-matrix-cruz span {
-    box-sizing: border-box;
-/*AQUI CONTROLA O BRILHO DA CRUZ*/
-    filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 12px rgba(255, 255, 255, 0.664));
+    box-sizing: border-box;                                            /* GARANTE QUE A ESPESSURA DA BORDA NÃO ALTERE O TAMANHO DE 50PX DO QUADRANTE */
+    filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 12px rgba(255, 255, 255, 0.664)); /* APLICA DUAS CAMADAS DE SHADOW PARA FAZER A LOGO BRILHAR */
 }
 
 /* Efeito Texto Vazado com Borda Neon */
 .logo-text-vazado {
-    font-size: 4.5rem;
-    font-weight: 900;
-    letter-spacing: 8px;
-    margin: 0;
-    color: transparent; /* Torna o interior da letra preto/invisível */
-    -webkit-text-stroke: 2px #ffffff; /* Cria a linha do contorno */
-    filter: drop-shadow(0 0 12px #00f3ff); /* Espalha o brilho azul nas bordas */
+    font-size: 4.5rem;                                                 /* DEIXA A PALAVRA "JOGOS" GIGANTE E IMPOENTE NO TOPO */
+    font-weight: 900;                                                  /* DEIXA O TRAÇO DO CONTORNO DA LETRA EM NEGRITO MÁXIMO */
+    letter-spacing: 8px;                                               /* CRIA UM ESPAÇO DE 8 PIXELS DE ISOLAMENTO ENTRE CADA LETRA */
+    margin: 0;                                                         /* ZERA AS MARGENS PADRÃO DO ELEMENTO H1 */
+    color: #000000;                                                /* TORNA O INTERIOR DA LETRA COMPLETAMENTE TRANSPARENTE E VAZADO */
+    -webkit-text-stroke: 2px #ffffff;                                  /* DESENHA A LINHA DE CONTORNO DA LETRA COM 2 PIXELS NA COR BRANCA */
+    filter: drop-shadow(0 0 12px #00f3ff);                             /* EXPANDE UM BRILHO AZUL CIANO REFORÇADO A PARTIR DO CONTORNO DELA */
 }
 
 .neon-cyan {
-    color: #00f3ff;
-    text-shadow: 0 0 05px #00f3ff, 0 0 10px rgba(0, 242, 255, 0.404);
+    color: #00f3ff;                                                    /* PINTA O TEXTO DE AZUL CIANO VIVO */
+    text-shadow: 0 0 05px #00f3ff, 0 0 10px rgba(0, 242, 255, 0.404);  /* GERA O EFEITO DE LUZ NEON AZUL EM DUAS CAMADAS ATRÁS DO TEXTO */
 }
 
 .neon-pink {
-    color: #ff007f;
-    text-shadow: 0 0 10px #ff007f, 0 0 10px rgba(255, 0, 128, 0.342);
+    color: #ff007f;                                                    /* PINTA O TEXTO DE ROSA CHOQUE VIVO */
+    text-shadow: 0 0 10px #ff007f, 0 0 10px rgba(255, 0, 128, 0.342);  /* GERA O EFEITO DE LUZ NEON ROSA ATRÁS DO TEXTO */
 }
 
 /* --- GRADE DE JOGOS --- */
 .portal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 40px;
-    width: 90%;
-    max-width: 950px;
-    justify-items: center;
-    padding-bottom: 60px;
+    display: grid;                                                     /* TRANSFORMA O CONTAINER EM UMA MALHA AUTOMÁTICA DE GRID */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));       /* CRIA COLUNAS DINÂMICAS QUE SE ADAPTAM À TELA SOZINHAS (MÍNIMO 240PX) */
+    gap: 40px;                                                         /* COMPRIMENTO DO ISOLAMENTO DE ESPAÇO ENTRE UM CARD E OUTRO (40PX) */
+    width: 90%;                                                        /* ADOTA 90% DA LARGURA DA TELA EM DISPOSITIVOS PEQUENOS */
+    max-width: 950px;                                                  /* TRAVA O TAMANHO MÁXIMO EM 950PX EM MONITORES GRANDES PARA NÃO DESORGANIZAR */
+    justify-items: center;                                             /* CENTRALIZA CADA CARD PERFEITAMENTE DENTRO DA SUA RESPECTIVA COLUNA */
+    padding-bottom: 60px;                                              /* ESPAÇO DE SEGURANÇA NO FUNDO PARA O GRID NÃO ENCOSTAR NO FINAL DA PÁGINA */
 }
 
 /* --- CARDS ESTILO BROCHE/PATCH INDUSTRIAL --- */
 .game-square {
-    width: 240px;
-    height: 240px;
-    border-radius: 46px; /* Borda bem grossa e arredondada */
-    background: linear-gradient(135deg, #161824 0%, #090a0f 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    text-decoration: none;
-    box-sizing: border-box;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 240px;                                                      /* LARGURA FIXA OBRIGATÓRIA DE TODOS OS CARDS DO SITE */
+    height: 240px;                                                     /* ALTURA FIXA OBRIGATÓRIA DE TODOS OS CARDS DO SITE */
+    border-radius: 46px;                                               /* ARREDONDAMENTO BEM ACENTUADO DOS CANTOS DANDO O LOOK EM BORRACHADO */
+    background: linear-gradient(135deg, #161824 0%, #090a0f 100%);     /* DEGRADÊ DIAGONAL ESCURO PARA O FUNDO PADRÃO DO CORPO DO CARD */
+    display: flex;                                                     /* ABRE O MODO FLEXBOX INTERNO DO CARD PARA ARRUMAR OS ITENS */
+    flex-direction: column;                                            /* REORGANIZA O FLUXO EM COLUNA (THUMBNAIL EM CIMA, TEXTO EMBAIXO) */
+    align-items: center;                                               /* CENTRALIZA TODOS OS COMPONENTES HORIZONTALMENTE DENTRO DO CARD */
+    justify-content: space-between;                                    /* DISTRIBUI O ESPAÇO EMPURRANDO A THUMB PRO TOPO E O TÍTULO PRO RODAPÉ */
+    padding: 20px;                                                     /* CRIA UM RECHEIO INTERNO DE ISOLAMENTO DE 20 PIXELS NAS BORDAS DO CARD */
+    text-decoration: none;                                             /* LIMPA O SUB LINHADO AZUL QUE VEM POR PADRÃO NOS LINKS DE TAG DE ANCORA */
+    box-sizing: border-box;                                            /* SEGURA O PADDING E A BORDA NO INTERIOR DO TAMANHO TOTAL SEM ESTOURAR OS 240PX */
+    position: relative;                                                /* ABRE REFERENCIA DE POSIÇÃO PARA ELEMENTOS FILHOS QUE QUEIRAM SE MOVER */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);                /* SUAVIZA QUALQUER MUDANÇA VISUAL (COMO O HOVER) LEVANDO 0.3 SEGUNDOS */
 }
 
 /* --- DESIGN INTERNO DO CARD ATIVO (THUMBNAIL DA VELHA) --- */
 .game-thumbnail {
-    width: 100%;
-    height: 70%;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(255, 255, 255, 0.03);
-    box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
-    overflow: hidden;
+    width: 100%;                                                       /* ABRE EM 100% PARA OCUPAR TODA A LARGURA DISPONÍVEL DO CARD */
+    height: 70%;                                                       /* RESERVA 70% DA ALTURA INTERNA SÓ PARA A CAIXA DA MINIATURA */
+    background: rgba(0, 0, 0, 0.4);                                    /* ESCURECE O FUNDO COM PRETO TRANSPARENTE PARA EFEITO DE JANELA PROFUNDA */
+    border-radius: 26px;                                               /* ARREDONDA OS CANTOS INTERNOS DA JANELA DO JOGO */
+    display: flex;                                                     /* FLEXBOX PARA DIAGRAMAR O MINI TABULEIRO CENTRALIZADO */
+    align-items: center;                                               /* CENTRALIZA VERTICALMENTE O MINI TABULEIRO */
+    justify-content: center;                                           /* CENTRALIZA HORIZONTALMENTE O MINI TABULEIRO */
+    border: 2px solid rgba(255, 255, 255, 0.03);                       /* CONTORNO CINZA ULTRA FINO SÓ PARA DAR REFINAMENTO VISUAL */
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);                      /* CRIA UMA SOMBRA INTERNA PASSANDO A IMPRESSÃO DE CAIXA REBAIXADA */
+    overflow: hidden;                                                  /* CORTA QUALQUER DETALHE DO JOGO QUE OUSE VAZAR FORA DA JANELA */
 }
 
 /* Simulando o desenho do tabuleiro dentro do card */
 .thumb-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 30px);
-    grid-template-rows: repeat(3, 30px);
-    gap: 5px;
-    text-align: center;
-    font-weight: 900;
-    font-size: 1.2rem;
-    line-height: 30px;
+    display: grid;                                                     /* TRANSFORMA A MINIATURA EM UM MICRO GRID DO TABULEIRO */
+    grid-template-columns: repeat(3, 30px);                            /* MONTA EXATAMENTE 3 COLUNAS QUADRADAS DE 30 PIXELS */
+    grid-template-rows: repeat(3, 30px);                               /* MONTA EXATAMENTE 3 LINHAS QUADRADAS DE 30 PIXELS */
+    gap: 5px;                                                          /* ESPAÇO DE 5 PIXELS QUE MODELA AS LINHAS DIVISÓRIAS DO TABULEIRO */
+    text-align: center;                                                /* CENTRALIZA AS LETRAS X E O NA CAIXINHA */
+    font-weight: 900;                                                  /* COLOCA AS LETRAS DA MINIATURA EM NEGRITO MÁXIMO */
+    font-size: 1.2rem;                                                 /* AJUSTA O TAMANHO VISUAL DO X E O NO MINI TABULEIRO */
+    line-height: 30px;                                                 /* CENTRALIZA VERTICALMENTE AS LETRAS CHANCELANDO COM A ALTURA DE 30PX */
 }
+
 .thumb-grid span {
-    border: 1px solid rgba(0, 243, 255, 0.15);
+    border: 1px solid rgba(0, 243, 255, 0.15);                         /* RISCA CADA CASINHA COM UMA LINHA AZUL BEM SUAVE E DISCRETA */
 }
-.thumb-grid span:nth-child(odd) { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }
-.thumb-grid span:nth-child(even) { color: #ff007f; text-shadow: 0 0 5px #ff007f; }
+
+.thumb-grid span:nth-child(odd) { color: #00f3ff; text-shadow: 0 0 5px #00f3ff; }   /* SELECIONA AS CASINHAS ÍMPARES DA MINIATURA E PINTA DE NEON CIANO */
+.thumb-grid span:nth-child(even) { color: #ff007f; text-shadow: 0 0 5px #ff007f; }  /* SELECIONA AS CASINHAS PARES DA MINIATURA E PINTA DE NEON ROSA */
 
 .card-footer h3 {
-    margin: 5px 0 0 0;
-    font-size: 0.95rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 800;
+    margin: 5px 0 0 0;                                                 /* SEPARA EM 5 PIXELS O TOPO DO TÍTULO EM RELAÇÃO À JANELA DA THUMB */
+    font-size: 0.95rem;                                                /* TAMANHO DISCRETO E REFINADO PARA O TEXTO DO TÍTULO DO JOGO */
+    letter-spacing: 2px;                                               /* CRIA UM RESPIRO AFASTANDO AS LETRAS DO TÍTULO EM 2 PIXELS */
+    text-transform: uppercase;                                         /* OBRIGA OS TÍTULOS DOS JOGOS A SE COMPORTAREM EM LETRAS MAIÚSCULAS */
+    font-weight: 800;                                                  /* DETERMINA PESO DE NEGRITO EXPANDIDO PRO TÍTULO DO CARD */
 }
 
 /* --- AUTOMAÇÃO DOS NEONS IMPARES (1º, 3º, 5º... Sempre serão Ciano) --- */
 .portal-grid .game-square:nth-child(odd) {
-    border: 8px solid #00f3ff;
-    box-shadow: 
+    border: 8px solid #00f3ff;                                         /* DETECTA QUE O CARD É ÍMPAR E CHUVA A BORDA GROSSA DE REVESTIMENTO CIANO */
+    box-shadow:                                                        /* APLICA AS TRÊS CAMADAS DE BRILHO: DISTANCIA PRETA, NEON EXTERNO E REFORÇO INTERNO BRANCO */
         0 15px 35px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(0, 243, 255, 0.4),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .portal-grid .game-square:nth-child(odd) h3 {
-    color: #ffffff;
-    text-shadow: 0 0 8px #00f3ff;
+    color: #ffffff;                                                    /* PREENCHE A PARTE INTERNA DO TEXTO COM A COR BRANCA */
+    text-shadow: 0 0 8px #00f3ff;                                      /* ACENDE A LUZ NEON AZUL EM VOLTA DO TÍTULO DO JOGO ÍMPAR */
 }
 
-.portal-grid .game-square:nth-child(odd):hover:not(.coming-soon) {
-    transform: translateY(4px);
-    border-color: #5cf7ff;
-    box-shadow: 
+.portal-grid .game-square:nth-child(odd):hover:not(.em-breve) {
+    transform: translateY(4px);                                        /* HOVER INTERATIVO: EMPURRA O CARD ATIVO 4PX PARA BAIXO IMITANDO UM BOTÃO REAL */
+    border-color: #5cf7ff;                                             /* LIGA UMA VOLTAGEM MAIS CLARA E VIBRANTE NA COR DA BORDA CIANO NO TOQUE */
+    box-shadow:                                                        /* EXPANDE A FORÇA DO BRILHO EXTERNO REFORÇANDO A LUMINOSIDADE DO NEON (DE 20 FORA PRA 40) */
         0 8px 20px rgba(0, 0, 0, 0.8),
         0 0 40px #00f3ff,
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
@@ -169,22 +186,22 @@ body {
 
 /* --- AUTOMAÇÃO DOS NEONS PARES (2º, 4º, 6º... Sempre serão Rosa) --- */
 .portal-grid .game-square:nth-child(even) {
-    border: 8px solid #ff007f;
-    box-shadow: 
+    border: 8px solid #ff007f;                                         /* DETECTA QUE O CARD É PAR E INJETA A MOLDURA DE BORDA GROSSA ROSA NEON */
+    box-shadow:                                                        /* APLICA A ENGENHARIA DE BRILHO ADAPTADA COM A COR ROSA NO COMPONENTE EXTEIOR */
         0 15px 35px rgba(0, 0, 0, 0.8),
         0 0 20px rgba(255, 0, 128, 0.4),
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 .portal-grid .game-square:nth-child(even) h3 {
-    color: #ffffff;
-    text-shadow: 0 0 8px #ff007f;
+    color: #ffffff;                                                    /* MANTÉM INTERIOR DO TEXTO EM BRANCO */
+    text-shadow: 0 0 8px #ff007f;                                      /* ACENDE A LUZ NEON ROSA CHOQUE EM VOLTA DO TÍTULO DO JOGO PAR */
 }
 
-.portal-grid .game-square:nth-child(even):hover:not(.coming-soon) {
-    transform: translateY(4px);
-    border-color: #ff5ca8;
-    box-shadow: 
+.portal-grid .game-square:nth-child(even):hover:not(.em-breve) {
+    transform: translateY(4px);                                        /* ANIMAÇÃO DE AFUNDAMENTO DO BOTÃO DE JOGO PAR */
+    border-color: #ff5ca8;                                             /* CLAREIA O TOM DA BORDA ROSA SIMULANDO MAIOR LUMINOSIDADE NO TOQUE */
+    box-shadow:                                                        /* EXTRAPOLA O BRILHO ROSA PARA 40 PIXELS DE ESPALHAMENTO NO HOVER DO MOUSE */
         0 8px 20px rgba(0, 0, 0, 0.8),
         0 0 40px #ff007f,
         inset 0 2px 4px rgba(255, 255, 255, 0.5);
@@ -194,40 +211,43 @@ body {
 
 /* Remove o efeito de brilho e movimento dos cards bloqueados */
 .portal-grid .game-square.em-breve {
-    background: #08090f;
-    justify-content: center;
-    opacity: 1; /* alterar opacidade do card*/
-    cursor: not-allowed;
-    transform: none !important;
+    background: #08090f;                                               /* ALTERA O FUNDO PARA UM CINZA SÓLIDO TOTALMENTE OPACO DE CARD DESLIGADO */
+    justify-content: center;                                           /* OBRIGA OS ITENS INTERNOS A FICAREM PERFEITAMENTE AGRUPADOS NO MEIO DO CARD */
+    opacity: 1;                                                        /* MANIFESTA O CARD TOTALMENTE VISÍVEL (OPACIDADE MAXIMA NO CONTAINER) */
+    cursor: not-allowed;                                               /* BLOQUEIA A NAVEGAÇÃO INTERATIVA COLOCANDO O SINAL DE PROIBIDO NO MOUSE */
+    transform: none !important;                                        /* O !IMPORTANT ANULA O EFEITO DE DESCER NO HOVER TRAVANDO O CARD ESTÁTICO */
 }
 
-/* Deixa os textos internos escuros para parecer desligado */
-.portal-grid .game-square.em-breve .game-preview,
-.portal-grid .game-square.em-breve h3 {
-    color: #3b2333 !important;
-    text-shadow: none !important;
+/* CARD ÍMPAR (CARD 3): Aplica um Azul Ciano mais escuro, mas com NEON ACESO */
+.portal-grid .game-square.em-breve:nth-child(odd) .game-preview,
+.portal-grid .game-square.em-breve:nth-child(odd) h3 {
+    color: #00a9b5 !important;                                         /* PINTA A MÃE DA LETRA E O SÍMBOLO "?" COM UM CIANO METÁLICO MAIS FECHADO */
+    text-shadow: 0 0 2px #00a8b5 !important;                          /* CONCEDE UMA SOMBRA LUMINOSA AZUL CURTA DE APENAS 2 PIXELS (NEON ATIVO FOSCO) */
+}
+
+/* CARD PAR (CARD 4): Aplica um Rosa mais escuro, mas com NEON ACESO */
+.portal-grid .game-square.em-breve:nth-child(even) .game-preview,
+.portal-grid .game-square.em-breve:nth-child(even) h3 {
+    color: #b5005a !important;                                         /* PINTA A MÃE DA LETRA E O SÍMBOLO "?" COM UM ROSA/VINHO MAIS FECHADO */
+    text-shadow: 0 0 5px #b5005a !important;                          /* CONCEDE UMA SOMBRA LUMINOSA ROSA DE 5 PIXELS COMPLEMENTANDO O CANAL DO CARD */
 }
 
 /* Aplica as bordas escuras seguindo a nossa regra inteligente (Pares e Ímpares) */
 .portal-grid .game-square.em-breve:nth-child(odd) {
-    border: 8px solid #00373a !important; 
-    box-shadow: none !important;
+    border: 8px solid #00373a !important;                              /* SE O CARD BLOQUEADO FOR ÍMPAR, GANHA A BORDA GROSSA CIANO PETRÓLEO DESLIGADA */
+    box-shadow: none !important;                                       /* ARRANCA FORA TODA E QUALQUER SOMBRA LUMINOSA DE FORA DO CARD ATIVO */
 }
 
 .portal-grid .game-square.em-breve:nth-child(even) {
-    border: 8px solid #3b1225 !important; 
-    box-shadow: none !important;
+    border: 8px solid #3b1225 !important;                              /* SE O CARD BLOQUEADO FOR PAR, GANHA A BORDA GROSSA ROSA BORDÔ DESLIGADA */
+    box-shadow: none !important;                                       /* DELETA A SOMBRA EXTERNA BRILHANTE DO CARD BLOQUEADO PAR */
 }
-/* --- ESTILIZAÇÃO DO PONTO DE INTERROGAÇÃO "BONITÃO" --- */
+
+/* --- ESTILIZAÇÃO DO PONTO DE INTERROGAÇÃO CENTRAL, --- */
 .portal-grid .game-square.em-breve .game-preview {
-    font-size: 4.5rem;          /* Aumenta o tamanho para ficar imponente */
-    font-weight: 900;           /* Deixa o traço bem grosso e moderno */
-    color: #ffffff50 !important;  /* Um tom de roxo/vinho base */
-    
-    /* Um efeito de contorno e text-shadow bem sutil para parecer um neon apagado ou carregando */
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.219), 0 0 20px rgba(0, 243, 255, 0.05) !important;
-    
-    font-family: 'Impact', 'Arial Black', sans-serif; /* Usa uma fonte mais encorpada e estilosa */
-    user-select: none;          /* Impede o usuário de selecionar o texto sem querer */
-    transition: color 0.3s ease;
+    font-size: 4.5rem;                                                 /* ELEVA O TAMANHO DO CARACTERE DO "?" DEIXANDO ELE GRANDE E IMPOENTE */
+    font-weight: 300;                                                  /* EQUILIBRA O PESO DO CORPO DA FONTE DO "?" PARA UM TRAÇO MAIS FINO */
+    font-family: 'Impact', 'Arial Black', sans-serif;                  /* FORÇA A FONTE DO "?" SER ESPESSA E QUADRADA NO LOOK DIGITAL RETRÔ */
+    user-select: none;                                                 /* BLOQUEIA O USUÁRIO DE CLICAR E ARRASTAR DESTACANDO O SÍMBOLO "?" */
+    transition: color 0.3s ease;                                       /* COLOCA RETARDO SUAVE CASO O ELEMENTO SOFRA TRANSIÇÃO DE COR */
 }
